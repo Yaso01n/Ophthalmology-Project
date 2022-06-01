@@ -100,7 +100,7 @@
 <div class="container content">
 	<div class="row">
 	<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-	<form onsubmit="showMsg(0);return false;" method="post" class="reg-page">
+	<form action="http://localhost:5000/doctor" method="post" class="reg-page">
 	<div class="reg-header">
 	<h2>Register a new account</h2>
 	<p>Already Signed Up? Click <a href="http://127.0.0.1:5000/login" class="color-green">Sign In</a> to login your account.</p>
@@ -109,24 +109,24 @@
 	<div class="row">
 	<div class="col-sm-6">
 	<label>First Name </label>
-	<input type="text" class="form-control " style="margin-bottom: 20px;" required="">
+	<input type="text" class="form-control " style="margin-bottom: 20px;" required="" name="First Name">
 	</div>
 	<div class="col-sm-6">
 	<label>Last Name </label>
-	<input type="text" class="form-control " style="margin-bottom: 20px;" required="">
+	<input type="text" class="form-control " style="margin-bottom: 20px;" required="" name="Last Name">
 	</div>
 	</div>
 	<label>Mobile Number<span class="color-red">*</span></label>
-	<input type="text" class="form-control " style="margin-bottom: 20px;" required="">
+	<input type="text" class="form-control " style="margin-bottom: 20px;" required="" name="Mobile Number">
 	<label>Email Address <span class="color-red">*</span></label>
-	<input type="text" class="form-control " style="margin-bottom: 20px;" required="">
+	<input type="text" class="form-control " style="margin-bottom: 20px;" required="" name="Email Address">
 	<label>Username </label>
 	<input type="text" class="form-control " style="margin-bottom: 20px;" required="">
 
 	<div class="row">
 	<div class="col-sm-6">
 	<label>Password <span class="color-red">*</span></label>
-	<input type="password" class="form-control " style="margin-bottom: 20px;" required="">
+	<input type="password" class="form-control " style="margin-bottom: 20px;" required="" name="Password">
 	</div>
 	<div class="col-sm-6">
 	<label>Confirm Password <span class="color-red">*</span></label>

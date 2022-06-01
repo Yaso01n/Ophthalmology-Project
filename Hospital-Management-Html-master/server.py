@@ -9,11 +9,8 @@ mydb = mysql.connector.connect(
   database="SBME2024"
 )
 
+
 mycursor = mydb.cursor()
-
-
-
-
 app = Flask(__name__,template_folder="templates")
 
 
@@ -23,9 +20,28 @@ app = Flask(__name__,template_folder="templates")
 def hello_name():
    return render_template('index.html')
    
-@app.route('/doctor')
-def doctor():
-   return render_template('doctors.html')
+@app.route('/doctor',methods = ['POST', 'GET'])
+def registerdoctor():
+   if request.method == 'POST': ##check if there is post data
+      Fname = request.form['First Name']
+      Lname = request.form['Last Name']
+      phonenumber = request.form['Mobile Number']
+      Email = request.form['Email Address']
+      Password = request.form['Password']
+      print(Fname)
+      print(Lname)
+      print(phonenumber)
+      print(Email)
+      print(Password)
+      sql = "INSERT INTO Doctor (Password,Fname, Lname, Email, phonenumber) VALUES (%s, %s, %s, %s, %s)"
+      val = (Password,Fname, Lname, Email, phonenumber)
+      mycursor.execute(sql, val)
+      mydb.commit() 
+      return render_template('eachdoctor.html')
+   else:
+      return render_template('doctors.html')
+
+
 @app.route('/about')
 def about():
    return render_template('about.html')
