@@ -101,8 +101,9 @@
 					<div class="container content">
 					<div class="row">
 					<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
-					<form class="reg-page">
+					<form action="http://localhost:5000/login" method="post" class="reg-page">
 					<div class="reg-header">
+					<div class="msg">{{ msg }}</div>	
 					<h2>Login to your account</h2>
 					</div>
 
@@ -120,7 +121,7 @@
 					<label><input type="checkbox"> Stay signed in</label>
 					</div>
 					<div class="col-md-6">
-					<button class="btn-u pull-right" type="submit" onclick="userlogin(form)">Login</button>
+					<button class="btn-u pull-right" type="submit" onclick="">Login</button>
 					</div>
 					</div>
 					<hr>

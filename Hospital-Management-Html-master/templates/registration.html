@@ -99,7 +99,7 @@
 				<div class="container content">
 				<div class="row">
 				<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-				<form onsubmit="showMsg(0);return false;" method="post" class="reg-page">
+				<form action="http://localhost:5000/registration" method="post" class="reg-page">
 				<div class="reg-header">
 				<h2>Register a new account</h2>
 				<p>Already Signed Up? Click <a href="http://127.0.0.1:5000/login" class="color-green">Sign In</a> to login your account.</p>
@@ -107,18 +107,18 @@
 				<div class="row">
 				<div class="col-sm-6">
 				<label>First Name </label>
-				<input type="text" class="form-control " style="margin-bottom: 20px;" required="">
+				<input type="text" name="First Name" class="form-control " style="margin-bottom: 20px;" required="">
 				</div>
 				<div class="col-sm-6">
 				<label>Last Name </label>
-				<input type="text" class="form-control " style="margin-bottom: 20px;" required="">
+				<input type="text" name="Last Name" class="form-control " style="margin-bottom: 20px;" required="">
 				</div>
 				</div>
 				<label>Mobile Number<span class="color-red">*</span></label>
-				<input type="text" class="form-control " style="margin-bottom: 20px;" required="">
+				<input type="text" name="Mobile Number" class="form-control " style="margin-bottom: 20px;" required="">
 				
 				<label>Email Address <span class="color-red">*</span></label>
-				<input type="text" class="form-control " style="margin-bottom: 20px;" required="">
+				<input type="email" name="Email Address" class="form-control " style="margin-bottom: 20px;" required="">
 
 				<label>Username </label>
 				<input type="text" class="form-control " style="margin-bottom: 20px;" required="">
@@ -126,7 +126,7 @@
 				<div class="row">
 				<div class="col-sm-6">
 				<label>Password <span class="color-red">*</span></label>
-				<input type="password" class="form-control " style="margin-bottom: 20px;" required="">
+				<input type="password" name="Password" class="form-control " style="margin-bottom: 20px;" required="">
 				</div>
 				<div class="col-sm-6">
 				<label>Confirm Password <span class="color-red">*</span></label>

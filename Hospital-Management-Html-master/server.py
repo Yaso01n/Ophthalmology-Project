@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, request,render_template
+from flask import Flask, redirect, url_for, request,render_template,flash
 import numpy as np
 import mysql.connector
 from sympy import Id
@@ -66,21 +66,63 @@ def eachdoctor():
 @app.route('/eachpatient')
 def eachpatient():
    return render_template('eachpatient.html')
-@app.route('/employee')
+
+
+@app.route('/employee', methods = ['POST', 'GET'])
 def employee():
-   return render_template('employee.html')
-@app.route('/login')
+      return render_template('employee.html')
+
+
+@app.route('/login', methods = ['POST', 'GET'])
 def login():
-   return render_template('login.html')
+   if request.method == 'POST': ##check if there is post data
+      username = request.form['userid']
+      Password = request.form['usrpsw']
+      print(username)
+      print(Password)
+      mycursor.execute("SELECT * FROM Doctor WHERE id = (%s) AND Password = (%s)", (username, Password))
+      checkdoctor = mycursor.fetchone()
+      if checkdoctor:
+         return render_template('eachdoctor.html')
+      else:
+         mycursor.execute("SELECT * FROM Employee WHERE id = (%s) AND Password = (%s)", (username, Password))
+         checkemployee = mycursor.fetchone()
+         if checkemployee:
+            return render_template('employee.html') 
+         else:
+            msg= 'wrong login'
+            return render_template('login.html', msg= msg)
+   else:
+      return render_template('login.html')
+
 @app.route('/patient')
 def patient():
    return render_template('patient.html')
 @app.route('/privacy')
 def privacy():
    return render_template('privacy.html')
-@app.route('/registration')
+
+@app.route('/registration', methods = ['POST', 'GET'])
 def registration():
-   return render_template('registration.html')
+   if request.method == 'POST': ##check if there is post data
+      Fname = request.form['First Name']
+      Lname = request.form['Last Name']
+      phonenumber = request.form['Mobile Number']
+      Email = request.form['Email Address']
+      Password = request.form['Password']
+      print(Fname)
+      print(Lname)
+      print(phonenumber)
+      print(Email)
+      print(Password)
+      sql = "INSERT INTO Employee (Password,Fname, Lname, Email, Phonenumber) VALUES (%s, %s, %s, %s, %s)"
+      val = (Password,Fname, Lname, Email, phonenumber)
+      mycursor.execute(sql, val)
+      mydb.commit() 
+      return render_template('employee.html')
+   else:
+      return render_template('registration.html')
+
 @app.route('/review')
 def review():
    return render_template('review.html')
