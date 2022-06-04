@@ -83,7 +83,6 @@
 
 	</li>
 	<!-- End Home-->
-
 	<!-- Device -->
 	<li class="mega-menu-fullwidth">
 	<a href="http://127.0.0.1:5000/device" >
@@ -94,7 +93,7 @@
 	<!-- List Device -->
 	<li class="mega-menu-fullwidth">
 	<a href="http://127.0.0.1:5000/dataofdevice" >
-	List of Devices
+	List os Devices
 	</a>
 	</li>
 	<!-- List Device -->
@@ -107,7 +106,7 @@
     <!-- List doctor -->
 	<!-- List patient -->
 	<li class="mega-menu-fullwidth">
-    <a href="http://127.0.0.1:5000/dataofpatient" >
+    <a href="http://127.0.0.1:5000/dataofdoctor" >
     Patients
     </a>
     </li>
@@ -130,77 +129,83 @@
 	</div>
 	<!-- End Navbar -->
 
+	
+	
 
 
-			<!-- Slider -->
-			<div id="slide">
-			<div class="slideshow-container">
-			<div class="mySlides fade"> <img src="static/assets/img/Slider/33.jpg" alt="Slider1" style="width:100%"> </div>
-			<div class="mySlides fade"> <img src="static/assets/img/Slider/11.jpg" alt="Slider2" style="width:100%"> </div>
-			<div class="mySlides fade"> <img src="static/assets/img/Slider/22.jpg" alt="Slider3" style="width:100%"> </div>
-			<a class="prev" onclick="plusSlides(-1)">&#10094;</a> <a class="next" onclick="plusSlides(1)">&#10095;</a> 
-			</div>
-			<br>
-			<div style="text-align:center"> 
-			<span class="dot" onclick="currentSlide(1)"></span> 
-			<span class="dot" onclick="currentSlide(2)"></span> 
-			<span class="dot" onclick="currentSlide(3)"></span>
-			<span class="dot" onclick="currentSlide(4)"></span>
-			</div>
-			</div>
+	<!--=== Heading ===-->
+	<div class="container content">
+	<div class="row " style="margin-bottom: 30px;">
+	<div class="col-md-9 " style="margin-bottom: 30px;">
+	<div class="headline"><h2>Device</h2></div>
 
-			<script>
-			var slideIndex = 0;
-			showSlides();
-			var slides,dots;
+				<!--=== APPOINTMENT FORM ===-->
+				<form onsubmit="http://localhost:5000/device" method="post" class="sky-form sky-changes-3">
+				<fieldset>
+				<div class="row">
+				<section class="col col-6">
+				<label class="label">Device'sname</label>
+				<label class="input">
+				<i class="icon-append fa fa-user"></i>
+				<input type="text" name="name"  required="">
+				</label>
+				</section>
+				<section class="col col-6">
+				<label class="label">Device'scode</label>
+				<label class="input">
+				<i class="icon-append fa fa-envelope-o"></i>
+				<input type="text" name="code"  required="">
+				</label>
+				</section>
+				</div>
+				<section>
+				<label class="label">Company</label>
+				<label class="input">
+				<i class="icon-append fa fa-phone"></i>
+				<input type="text" name="company" required="">
+				</label>
+				</section>
+                <label class="label">Supervisor</label>
+				<label class="input">
+				<i class="icon-append fa fa-phone"></i>
+				<input type="text" name="Supervisor" required="">
+				</label>
+				</section> 	
+				<div class="row">
+				<section class="col col-6">
+				<label class="date">Maintenance State</label>
+				<label class="input">
+				<i class="icon-append fa fa-calendar"></i>
+				<input type="text" name="ma" required="">
+				</label>
+				</section>
+				<section class="col col-6">
+				<label class="date">Work State</label>
+				<label class="input">
+				<i class="icon-append fa fa-calendar"></i>
+				<input type="text" name="work" required="">
+				</label>
+				</section>
+				</div>
+				
 
-			function showSlides() {
-			var i;
-			slides = document.getElementsByClassName("mySlides");
-			dots = document.getElementsByClassName("dot");
-			for (i = 0; i < slides.length; i++) {
-			slides[i].style.display = "none";  
-			}
-			slideIndex++;
-			if (slideIndex> slides.length) {slideIndex = 1}    
-			for (i = 0; i < dots.length; i++) {
-			dots[i].className = dots[i].className.replace(" active", "");
-			}
-			slides[slideIndex-1].style.display = "block";  
-			dots[slideIndex-1].className += " active";
-			setTimeout(showSlides, 8000); // Change image every 8 seconds
-			}
+				</fieldset>
 
-			function plusSlides(position) {
-			slideIndex +=position;
-			if (slideIndex> slides.length) {slideIndex = 1}
-			else if(slideIndex<1){slideIndex = slides.length}
-			for (i = 0; i < slides.length; i++) {
-			slides[i].style.display = "none";  
-			}
-			for (i = 0; i < dots.length; i++) {
-			dots[i].className = dots[i].className.replace(" active", "");
-			}
-			slides[slideIndex-1].style.display = "block";  
-			dots[slideIndex-1].className += " active";
-			}
-
-			function currentSlide(index) {
-			if (index> slides.length) {index = 1}
-			else if(index<1){index = slides.length}
-			for (i = 0; i < slides.length; i++) {
-			slides[i].style.display = "none";  
-			}
-			for (i = 0; i < dots.length; i++) {
-			dots[i].className = dots[i].className.replace(" active", "");
-			}
-			slides[index-1].style.display = "block";  
-			dots[index-1].className += " active";
-			}
-			</script>
+				<footer>
+				<button type="submit" class="btn-u">Send </button>
+				</footer>
 
 
-			<!-- End of Slider -->
+				</form>
+				</div><!--/col-md-9-->
+
+				<!-- side part of appointment -->
+						<div class="col-md-3" style="margin-top: 56px;">
+						
+						</div><!--/col-md-3-->
+						</div><!--/row-->
+						</div><!--/container-->
+
 
 		<!--=== Footer ===-->
 		<div class="footer-v1">
@@ -208,7 +213,7 @@
 		<div class="container">
 		<div class="row">
 		<!-- About -->
-		<div class="col-md-3 md-margin-bottom-40">
+		<div class="col-md-3 " style="margin-bottom: 40px;">
 		<a href="http://127.0.0.1:5000"><img id="logo-footer" class="footer-logo" src="static/assets/img/logo/unity_white.jpg" alt=""></a>
 		<p>At Unity Hospital, we are convinced that 'quality' and 'lowest cost' are not mutually exclusive when it comes to healthcare delivery.</p>
 		<p>Our mission is to deliver high quality, affordable healthcare services to the broader population in India.</p>
@@ -216,7 +221,7 @@
 		<!-- End About -->
 
 		<!-- Latest -->
-		<div class="col-md-3" style="margin-bottom: 40px;">
+		<div class="col-md-3 " style="margin-bottom: 40px;">
 		<div class="posts">
 		<div class="headline"><h2>Latest Posts</h2></div>
 		<ul class="list-unstyled latest-list">
@@ -238,19 +243,20 @@
 		<!-- End Latest -->
 
 		<!-- Link List -->
-		<div class="col-md-3" style="margin-bottom: 40px;">
+		<div class="col-md-3 " style="margin-bottom: 40px;">
 		<div class="headline"><h2>Useful Links</h2></div>
 		<ul class="list-unstyled link-list">
 		<li><a href="http://127.0.0.1:5000/about">About us</a><i class="fa fa-angle-right"></i></li>
 		<li><a href="http://127.0.0.1:5000/contact">Contact us</a><i class="fa fa-angle-right"></i></li>
+		
 		</ul>
 		</div><!--/col-md-3-->
 		<!-- End Link List -->
 
 		<!-- Address -->
-		<div class="col-md-3 map-img" style="margin-bottom: 40px;">
+		<div class="col-md-3 map-img " style="margin-bottom: 40px;">
 		<div class="headline"><h2>Contact Us</h2></div>
-		<address class="md-margin-bottom-40">
+		<address class="" style="margin-bottom: 40px;">
 		Unity Hospital <br />
 		Ahmedabad, IN <br />
 		Phone: 886 666 00555 <br />
@@ -315,6 +321,17 @@
 		<!--=== End Footer ===-->
 </div><!--/wrapper-->
 
+	<!-- Java scripts -->
+	<script type="text/javascript" src="static/assets/plugins/jquery/jquery.min.js"></script>
+	<script type="text/javascript">
+	function showMsg(flag){
+	if(flag==0){
+	$('.successBox').css('display', 'block');
+	}else{
+	$('.successBox').css('display', 'none');
+	}
+	}
+	</script>
+
 </body>
 </html>
-

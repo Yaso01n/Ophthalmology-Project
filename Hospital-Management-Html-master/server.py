@@ -9,6 +9,7 @@ mydb = mysql.connector.connect(
   database="SBME2024"
 )
 
+#في حاجات عايزة تتظبط في صفحة الcancel والreview متنسوش
 
 mycursor = mydb.cursor()
 app = Flask(__name__,template_folder="templates")
@@ -19,6 +20,7 @@ app = Flask(__name__,template_folder="templates")
 @app.route('/')
 def hello_name():
    return render_template('index.html')
+
    
 @app.route('/doctor',methods = ['POST', 'GET'])
 def registerdoctor():
@@ -45,30 +47,88 @@ def registerdoctor():
 @app.route('/about')
 def about():
    return render_template('about.html')
-@app.route('/appointment')
+
+
+@app.route('/appointment',methods = ['POST', 'GET'])
 def appointment():
-   return render_template('appointment.html')
-@app.route('/cancel')
+   if request.method == 'POST': ##check if there is post data
+      name = request.form['name']
+      email = request.form['email']
+      mobilenumber = request.form['number']
+      selecteddoctor=request.form['DOCTORS']
+      print(selecteddoctor)
+      selecteddate= request.form['date']
+      selectedtime=request.form['Time']
+      mycursor.execute("INSERT INTO patient (name, Email, phonenumber) VALUES (%s,%s,%s)", (name,email,mobilenumber))
+      mydb.commit()
+      sql="INSERT INTO BOOKING ( p_email,d_id, date, time) VALUES (%s,%s,%s,%s)"
+      mycursor.execute(sql,(email,selecteddoctor, selecteddate, selectedtime))
+      mydb.commit() 
+      return render_template('patient.html')
+   else:
+      mycursor.execute("SELECT Fname FROM Doctor")
+      myresult = mycursor.fetchall()
+      data={
+         'rec':myresult,
+      }
+      return render_template('appointment.html',data=data)
+
+
+
+@app.route('/cancel',methods = ['POST', 'GET'])
 def cancel():
-   return render_template('cancel.html')  
+   if request.method == 'POST': ##check if there is post data
+      email = request.form['email']
+      selecteddoctor=request.form['subject']
+      sql = "DELETE FROM  BOOKING where d_id= %s AND p_email= %s "
+      val = (selecteddoctor,email)
+      mycursor.execute(sql, val)
+      mydb.commit() 
+      msg= 'Your appointment is booked'
+      return render_template('cancel.html')
+   else:
+      return render_template('cancel.html')
+
+
 @app.route('/contact')
 def contact():
    return render_template('contact.html')
-@app.route('/dataofdoctor')
+
+
+@app.route('/dataofdoctor',methods = ['POST', 'GET'])
 def dataofdoctor():
-   return render_template('dataofdoctor.html')
-@app.route('/dataofpatient')
+   if request.method == 'GET': ##check if there is post data
+      result= mycursor.execute("SELECT * FROM Doctor")  
+      myresult = mycursor.fetchall()
+      return render_template('dataofdoctor.html',myresult=myresult)
+   else: 
+      return render_template('dataofdoctor.html')        
+
+@app.route('/dataofpatient',methods = ['POST', 'GET'])
 def dataofpatient():
-   return render_template('dataofpatient.html')
+   if request.method == 'GET': ##check if there is post data
+      result= mycursor.execute("SELECT * FROM Patient")  
+      myresult = mycursor.fetchall()
+      return render_template('dataofpatient.html',myresult=myresult)
+   else:
+      return render_template('dataofpatient.html')
+   
 @app.route('/eachdoctor')
 def eachdoctor():
-   return render_template('eachdoctor.html')
+   mycursor.execute("SELECT * FROM booking JOIN doctors ON d_id=id ")
+   row_headers=[x[0] for x in mycursor.description] 
+   myresult = mycursor.fetchall()
+   return render_template('eachdoctor.html',DoctorsData = myresult)
+
 @app.route('/eachpatient')
 def eachpatient():
-   return render_template('eachpatient.html')
+   mycursor.execute("SELECT * FROM booking JOIN patient ON p_email=Email")
+   row_headers =[x[0] for x in mycursor.description] 
+   myresult = mycursor.fetchall()
+   return render_template('eachpatient.html',patientsData = myresult)
 
 
-@app.route('/employee', methods = ['POST', 'GET'])
+@app.route('/employee')
 def employee():
       return render_template('employee.html')
 
@@ -98,9 +158,12 @@ def login():
 @app.route('/patient')
 def patient():
    return render_template('patient.html')
+
+
 @app.route('/privacy')
 def privacy():
    return render_template('privacy.html')
+   
 
 @app.route('/registration', methods = ['POST', 'GET'])
 def registration():
@@ -110,11 +173,7 @@ def registration():
       phonenumber = request.form['Mobile Number']
       Email = request.form['Email Address']
       Password = request.form['Password']
-      print(Fname)
-      print(Lname)
-      print(phonenumber)
-      print(Email)
-      print(Password)
+
       sql = "INSERT INTO Employee (Password,Fname, Lname, Email, Phonenumber) VALUES (%s, %s, %s, %s, %s)"
       val = (Password,Fname, Lname, Email, phonenumber)
       mycursor.execute(sql, val)
@@ -125,12 +184,61 @@ def registration():
 
 @app.route('/review')
 def review():
-   return render_template('review.html')
+   if request.method == 'POST':
+       return render_template('eachpatient.html')
+   else:
+      return render_template('review.html')
+
 @app.route('/terms')
 def terms():
    return render_template('terms.html')
 
 
+@app.route('/device',methods = ['POST', 'GET'])
+def device():
+    if request.method == 'POST': 
+      name = request.form['name']
+      code = request.form['code']
+      company = request.form['company']
+      Supervisor = request.form['Supervisor']
+      maintenance = request.form['ma']
+      work = request.form['work']
+      sql = "INSERT INTO Devices (dcode , supervisor , company , m_state , w_state ) VALUES (%s, %s, %s, %s, %s)"
+      val = (code, Supervisor,company, maintenance,work)
+      mycursor.execute(sql, val)
+      mydb.commit() 
+      return render_template('employee.html')
+    else:  
+     return render_template('device.html')
+
+
+@app.route('/dataofdevice')
+def dataofdevice():
+    result= mycursor.execute("SELECT * FROM Devices")  
+    myresult = mycursor.fetchall()
+    return render_template('dataofdevice.html',myresult=myresult)
+
+@app.route('/update',methods=['POST','GET'])
+def update():
+    if request.method == 'POST':
+        code = request.form['code']
+        maintenance = request.form['ma']
+        work = request.form['work']
+        mycursor.execute("SELECT * FROM Devices WHERE dcode = (%s)", (code,))
+        checkdevice = mycursor.fetchone()
+        if checkdevice:
+         mycursor.execute("""
+                  UPDATE Devices
+                  SET w_state=%s, m_state=%s
+                  WHERE dcode=%s
+               """, (work, maintenance, code))
+         mydb.commit() 
+         return render_template('employee.html')
+        else:
+           msg= 'Device does not exsist'
+           return render_template('update.html', msg= msg)
+
+    return render_template('update.html')
 
 
 if __name__ == '__main__':

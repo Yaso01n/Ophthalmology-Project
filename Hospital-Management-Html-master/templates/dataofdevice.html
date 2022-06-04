@@ -84,7 +84,6 @@
 	</li>
 	<!-- End Home-->
 
-
 	<!-- Device -->
 	<li class="mega-menu-fullwidth">
 	<a href="http://127.0.0.1:5000/device" >
@@ -108,11 +107,11 @@
     <!-- List doctor -->
 	<!-- List patient -->
 	<li class="mega-menu-fullwidth">
-	<a href="http://127.0.0.1:5000/dataofpatient" >
-	Patients
-	</a>
-	</li>
-	<!-- List patient -->
+    <a href="http://127.0.0.1:5000/dataofdevice" >
+    Patients
+    </a>
+    </li>
+    <!-- List patient -->
 	<!-- update Device -->
 	<li class="mega-menu-fullwidth">
 	<a href="http://127.0.0.1:5000/update" >
@@ -136,17 +135,16 @@
 	<div class="container content">
 	<div class="row " style="margin-bottom: 30px;">
 	<div class="col-md-9 " style="margin-bottom: 30px;">
-	<div class="headline"><h2>List of Doctors</h2></div>
+	<div class="headline"><h2>List of Device</h2></div>
 
 	<table class="table">
 		<thead class="bg-success">
 		  <tr>
-			<th scope="col">ID</th>
-			<th scope="col">Password</th>
-			<th scope="col">First Name</th>
-			<th scope="col"> Last Name</th>
-			<th scope="col"> Email </th>
-            <th scope="col"> Phone Number </th>
+			<th scope="col">Device Code</th>
+			<th scope="col">Supervisor</th>
+			<th scope="col">Company</th>
+			<th scope="col"> Work State</th>
+			<th scope="col"> Maintenance State</th>
 
 		  </tr>
 		</thead>
@@ -159,7 +157,6 @@
 				<td>{{r[3]}}</td>
 				<td>{{r[4]}}</td>
 				<td>{{r[5]}}</td>
-                <td>{{r[6]}}</td>
 			</tr>
 	        {%endfor%}  
 		</tbody>
