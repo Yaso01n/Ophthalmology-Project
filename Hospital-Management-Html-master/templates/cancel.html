@@ -136,6 +136,7 @@
 				<form action="http://localhost:5000/cancel" method="post" class="sky-form sky-changes-3">
 				<fieldset>
 				<div class="row">
+				<div class="msg"  style="color:red;">{{ msg }}</div>		
 				<section class="col col-6">
 				<label class="label">Name</label>
 				<label class="input">
@@ -152,11 +153,14 @@
 				</section>
 				</div>
 
-				<section>
-				<label class="label">Doctor's id</label>
-				<label class="input">
-				<i class="icon-append fa fa-tag"></i>
-				<input type="text" name="subject" required="">
+				<label class="select">
+				<select name="Doctors" required="">
+				<option value="" selected="" disabled="">Select Doctor</option>
+				<option value="1">Yasmine</option>
+				<option value="2">Zyad</option>
+				<option value="3">Eyad</option>
+				</select>
+				<i></i>
 				</label>
 				</section>
 
@@ -187,14 +191,9 @@
 				</label>
 				</section>
 				</div>
-				<div class="alert alert-success successBox">
-				<button type="button" class="close" onclick="showMsg(1);">×</button>
-				<strong style="font-size: 16px;">Congratulations!</strong><span class="alert-link"> Your Appointment has been booked successfully.</span>
-				</div>
-
 				</fieldset>
 
-				<footer>
+				<footer>	
 				<button type="submit" class="btn-u">OK</button>
 				</footer>
 

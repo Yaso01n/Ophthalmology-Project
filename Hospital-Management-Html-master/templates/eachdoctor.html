@@ -1,50 +1,198 @@
-<!--هنحط جدول فيه مواعيد الدكتور-->
 <!DOCTYPE html>
-
-<html>
-
+<html> 
 <head>
+<title> ophthmaology Hospital | Employee </title>
 
-	<title>Table</title>
+	<!-- Web Fonts -->
+	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin">
 
-	<link rel="stylesheet" type="text/css" href="static/assets/css/table.css">
+	<!-- CSS Global Compulsory -->
+	<link rel="stylesheet" href="static/assets/plugins/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="static/assets/css/style.css">
 
-</head>
+	<!-- CSS Header and Footer -->
+	<link rel="stylesheet" href="static/assets/css/header.css">
+	<link rel="stylesheet" href="static/assets/css/footer.css">
 
-<body>
+	<!-- CSS Implementing Plugins -->
+	<link rel="stylesheet" href="static/assets/plugins/line-icons-pro/styles.css">
+	<link rel="stylesheet" href="static/assets/plugins/line-icons/line-icons.css">
+	<link rel="stylesheet" href="static/assets/plugins/font-awesome/css/font-awesome.min.css">
 
-<table>
+	<!-- CSS Customization -->
+	<link rel="stylesheet" href="static/assets/css/custom.css">
+	<!--CSS profile-->
+	<link rel="stylesheet" href="static/assets/css/Profile.css">
 
-	<tr>
+	</head>
 
-		<th>doctor FN</th>
+	<body>
+	<div class="wrapper">
+	<!--=== Header v1 ===-->
+	<div class="header-v1">
+	<!-- Topbar -->
+	<div class="topbar-v1">
+	<div class="container">
+	<div class="row">
+	<div class="col-md-6">
+	<ul class="list-inline top-v1-contacts">
+	<li>
+	<i class="fa fa-envelope"></i> Email: ophthmaologyhospital@gmail.com
+	</li>
+	<li>
+	<i class="fa fa-phone"></i> Contact no : 88666 00555
+	</li>
+	</ul>
+	</div>
+	</div>
+	</div>
+	</div>
 
-		<th>doctor LN</th>
+	<!-- End Topbar -->
 
-		<th>Doctor's appointments</th>
+	<!-- Navbar -->
+	<div class="navbar mega-menu" role="navigation">
+	<div class="container">
+	<!-- Brand and toggle get grouped for better mobile display -->
+	<div class="res-container">
+	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+	<span class="sr-only">Toggle navigation</span>
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+	</button>
 
-	</tr>
+	<div class="navbar-brand">
+	<a href="http://127.0.0.1:5000">
+	<img src="static/assets/img/logo/unity_white.jpg" alt="Logo">
+	</a>
+	</div>
+	</div><!--/end responsive container-->
 
-	<tr>
+	<!-- Collect the nav links, forms, and other content for toggling -->
+	<div class="collapse navbar-collapse navbar-responsive-collapse">
+	<div class="res-container">
+	<ul class="nav navbar-nav">
 
-		<td>sd</td>
+	<!-- Collect the nav links, forms, and other content for toggling -->
 
-		<td>dfe</td>
 
-		<td>dwd</td>
+	<!-- Home  -->
+	<li class="mega-menu-fullwidth">
+	<a href="http://127.0.0.1:5000" >
+	HOME
+	</a>
 
-	</tr>
+	</li>
+	<!-- End Home-->
+	<!-- Home  -->
+	<li class="mega-menu-fullwidth">
+	<a href="http://127.0.0.1:5000/appointmentofdoctor" >
+	APPOINTMENT
+	</a>
+	
+	</li>
+	<!-- End Home-->
 
-	<tr>
+	
 
-		<td></td>
+	</ul>
 
-		<td></td>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	<!-- End Navbar -->
+	<div class="container emp-profile">
+		<form method="post">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="profile-img">
+						<img src="static/assets/img/user.jpg" alt=""/>
+						<div class="file btn btn-lg btn-primary">
+							Change Photo
+							<input type="file" name="file"/>
+						</div>
+						<li class="mega-menu-fullwidth">
+						<a href="http://127.0.0.1:5000/setting" >
+						Edit File
+						</a>
+						
+						</li>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="profile-head">
+								<h3>
+									HELLO
+								</h3>
+								<h6>
+									
+								</h6>
+						<ul class="nav nav-tabs" id="myTab" role="tablist">
+							<li class="nav-item">
+								<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+							</li>
+							
+						</ul>
+					</div>
+				</div>
+				
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="profile-work">
+						
+					</div>
+				</div>
+				<div class="col-md-8">
+					<div class="tab-content profile-tab" id="myTabContent">
+						<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+									<div class="row">
+										<div class="col-md-6">
+											<label>User Id</label>
+										</div>
+										<div class="col-md-6">
+											<p></p>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<label>Name</label>
+										</div>
+										<div class="col-md-6">
+											<p></p>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<label>Email</label>
+										</div>
+										<div class="col-md-6">
+											<p></p>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<label>Phone</label>
+										</div>
+										<div class="col-md-6">
+											<p></p>
+										</div>
+									</div>
+									
+						</div>
+						
+						</div><!--/container-->
+				</div>
+			</div>
+		</form>           
+	</div>
 
-		<td></td>
 
-	</tr>
 
-</table>
+			
 </body>
 </html>
+

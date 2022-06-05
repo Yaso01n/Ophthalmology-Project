@@ -9,7 +9,6 @@ mydb = mysql.connector.connect(
   database="SBME2024"
 )
 
-#في حاجات عايزة تتظبط في صفحة الcancel والreview متنسوش
 
 mycursor = mydb.cursor()
 app = Flask(__name__,template_folder="templates")
@@ -59,12 +58,19 @@ def appointment():
       print(selecteddoctor)
       selecteddate= request.form['date']
       selectedtime=request.form['Time']
-      mycursor.execute("INSERT INTO patient (name, Email, phonenumber) VALUES (%s,%s,%s)", (name,email,mobilenumber))
-      mydb.commit()
-      sql="INSERT INTO BOOKING ( p_email,d_id, date, time) VALUES (%s,%s,%s,%s)"
-      mycursor.execute(sql,(email,selecteddoctor, selecteddate, selectedtime))
-      mydb.commit() 
-      return render_template('patient.html')
+      mycursor.execute("SELECT * FROM BOOKING WHERE time= %s AND date= %s AND d_id= %s" , (selectedtime,selecteddate,selecteddoctor))
+      checkappointment = mycursor.fetchone()
+      if checkappointment:
+         msg='This appointment is already booked'
+         return render_template('appointment.html',msg=msg)
+      else:   
+         mycursor.execute("INSERT INTO patient (name, Email, phonenumber) VALUES (%s,%s,%s)", (name,email,mobilenumber))
+         mydb.commit()
+         sql="INSERT INTO BOOKING ( p_email,d_id, date, time) VALUES (%s,%s,%s,%s)"
+         mycursor.execute(sql,(email,selecteddoctor, selecteddate, selectedtime))
+         mydb.commit()
+         msg='Your apointment is booked successfully'
+         return render_template('appointment.html',msg=msg)
    else:
       mycursor.execute("SELECT Fname FROM Doctor")
       myresult = mycursor.fetchall()
@@ -79,13 +85,19 @@ def appointment():
 def cancel():
    if request.method == 'POST': ##check if there is post data
       email = request.form['email']
-      selecteddoctor=request.form['subject']
-      sql = "DELETE FROM  BOOKING where d_id= %s AND p_email= %s "
-      val = (selecteddoctor,email)
-      mycursor.execute(sql, val)
-      mydb.commit() 
-      msg= 'Your appointment is booked'
-      return render_template('cancel.html')
+      selecteddoctor=request.form['Doctors']
+      mycursor.execute("SELECT * FROM BOOKING WHERE d_id= %s AND p_email= %s" , (selecteddoctor,email))
+      checkappointment = mycursor.fetchone()
+      if checkappointment:
+         sql = "DELETE FROM BOOKING where d_id= %s AND p_email= %s "
+         val = (selecteddoctor,email)
+         mycursor.execute(sql, val)
+         mydb.commit()
+         msg= 'Your appointment is canceled'
+         return render_template('cancel.html', msg=msg)
+      else:   
+         msg= 'This appointment not found '
+         return render_template('cancel.html', msg=msg)
    else:
       return render_template('cancel.html')
 
@@ -182,10 +194,24 @@ def registration():
    else:
       return render_template('registration.html')
 
-@app.route('/review')
+
+
+@app.route('/review', methods = ['POST', 'GET'])
 def review():
    if request.method == 'POST':
-       return render_template('eachpatient.html')
+      name=request.form['name']
+      email=request.form['email']
+      number=request.form['number']
+      mycursor.execute("SELECT * FROM Patient WHERE Email = (%s) AND name = (%s)", (email, name))
+      checkpatient = mycursor.fetchone()
+      if checkpatient:
+         mycursor.execute("SELECT * FROM booking JOIN patient ON p_email=Email where email=%s",(email))
+         row_headers =[x[0] for x in mycursor.description] 
+         myresult = mycursor.fetchall()
+         return render_template('review.html',myresult=myresult)
+      else:
+         msg='This patient not found'
+         return render_template('review.html',msg=msg)
    else:
       return render_template('review.html')
 
@@ -239,6 +265,15 @@ def update():
            return render_template('update.html', msg= msg)
 
     return render_template('update.html')
+
+
+@app.route('/appointmentofdoctor')
+def doctorappointment():
+   return render_template('appointmentofdoctor.html')
+
+@app.route('/setting')
+def setting():
+   return render_template('setting.html')   
 
 
 if __name__ == '__main__':

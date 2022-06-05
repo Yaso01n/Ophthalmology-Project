@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html> 
 <head>
-	<title> Unity Hospital | Appointment </title>
-
+<title> Unity Hospital | Setting </title>
 
 		<!-- Web Fonts -->
 		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin">
@@ -19,8 +18,6 @@
 		<link rel="stylesheet" href="static/assets/plugins/line-icons-pro/styles.css">
 		<link rel="stylesheet" href="static/assets/plugins/line-icons/line-icons.css">
 		<link rel="stylesheet" href="static/assets/plugins/font-awesome/css/font-awesome.min.css">
-		<link rel="stylesheet" href="static/assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css">
-		<link rel="stylesheet" href="static/assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css">
 
 		<!-- CSS Customization -->
 		<link rel="stylesheet" href="static/assets/css/custom.css">
@@ -28,26 +25,26 @@
 </head>
 
 <body>
-	<div class="wrapper">
-	<!--=== Header v1 ===-->
-	<div class="header-v1">
-	<!-- Topbar -->
-	<div class="topbar-v1">
-	<div class="container">
-	<div class="row">
-	<div class="col-md-6">
-		<ul class="list-inline top-v1-contacts">
-		<li>
-		<i class="fa fa-envelope"></i> Email: unityhospital@gmail.com
-		</li>
-		<li>
-		<i class="fa fa-phone"></i> Contact no : 88666 00555
-		</li>
-		</ul>
-	</div>
-	</div>
-	</div>
-	</div>
+		<div class="wrapper">
+		<!--=== Header v1 ===-->
+		<div class="header-v1">
+		<!-- Topbar -->
+		<div class="topbar-v1">
+		<div class="container">
+		<div class="row">
+		<div class="col-md-6">
+			<ul class="list-inline top-v1-contacts">
+			<li>
+			<i class="fa fa-envelope"></i> Email: unityhospital@gmail.com
+			</li>
+			<li>
+			<i class="fa fa-phone"></i> Contact no : 88666 00555
+			</li>
+			</ul>
+		</div>
+		</div>
+		</div>
+		</div>
 
 <!-- End Topbar -->
 
@@ -78,42 +75,7 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 
 
-				<!-- Home  -->
-				<li class="mega-menu-fullwidth">
-				<a href="http://127.0.0.1:5000" >
-				HOME
-				</a>
-
-				</li>
-				<!-- End Home-->
-
 				
-				<!-- BOOK -->
-				<li class="mega-menu-fullwidth">
-				<a href="http://127.0.0.1:5000/appointment" >
-				BOOK APPOINTMENT
-				</a>
-		
-				</li>
-				<!-- End BOOK -->
-		
-				<!-- DELETE -->
-				<li class="mega-menu-fullwidth">
-				<a href="http://127.0.0.1:5000/cancel" >
-				CANCEL
-				</a>	
-				</li>
-				<!-- End DELETE -->
-		
-				<!-- REVIEW -->
-				<li class="mega-menu-fullwidth">
-				<a href="http://127.0.0.1:5000/review">
-				REVIEW
-				</a>
-		
-				</li>
-				<!-- End REVIEW -->
-
 				</ul>
 
 				</div>
@@ -124,111 +86,57 @@
 				<!-- End Navbar -->
 
 
+	<!-- Image title -->
 
-	<!--=== Heading ===-->
-	<div class="container content">
-	<div class="row " style="margin-bottom: 30px;">
-	<div class="col-md-9 " style="margin-bottom: 30px;">
-	<div class="headline"><h2>Appointment Form</h2></div>
+	<div style="text-align: center; margin-top: 50px;">
+	<h2>UPDATE PROFILE</h2>
+	</div>
 
-				<!--=== APPOINTMENT FORM ===-->
-				<form action="http://localhost:5000/appointment" method="post" class="sky-form sky-changes-3">
-				<fieldset>
-				<div class="msg"  style="color:red;">{{ msg }}</div>	
+	<!-- End title  -->
+
+
+				<!--=== Content Part ===-->
+				<div class="container content">
 				<div class="row">
-				<section class="col col-6">
-				<label class="label">Name</label>
-				<label class="input">
-				<i class="icon-append fa fa-user"></i>
-				<input type="text" name="name" id="name" required="">
-				</label>
-				</section>
-				<section class="col col-6">
-				<label class="label">E-mail</label>
-				<label class="input">
-				<i class="icon-append fa fa-envelope-o"></i>
-				<input type="email" name="email" id="email" required="">
-				</label>
-				</section>
+				<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+				<form action="http://localhost:5000/registration" method="post" class="reg-page">
+				<div class="reg-header">
+				<h2>Update account</h2>
+				
 				</div>
-				<section>
-				<label class="label">Mobile Number</label>
-				<label class="input">
-				<i class="icon-append fa fa-phone"></i>
-				<input type="text" name="number" id="number" required="">
-				</label>
-				</section> 	
-				<section>
-				<section>
-				<label class="label">Purpose Of Appointment</label>
-				<label class="input">
-				<i class="icon-append fa fa-tag"></i>
-				<input type="text" name="subject" required="">
-				</label>
-				</section>
-				<label class="select">
-				<select name="DOCTORS" required="">
-				<option value="" selected="" disabled="">Select Doctor</option>
-				<option value="1">Yasmine</option>
-				<option value="2">Zyad</option>
-				</select>
-				<i></i>
-				</label>
-				</section>
+				
+				<label>Mobile Number<span class="color-red">*</span></label>
+				<input type="text" name="Mobile Number" class="form-control " style="margin-bottom: 20px;" required="">
+				
+				<label>Email Address <span class="color-red">*</span></label>
+				<input type="email" name="Email Address" class="form-control " style="margin-bottom: 20px;" required="">
+
 				
 				<div class="row">
-				<section class="col col-6">
-				<label class="date">Select Date</label>
-				<label class="input">
-				<i class="icon-append fa fa-calendar"></i>
-				<input name="date" type="date" required="">
-				</label>
-				</section>
-				<section class="col col-6">
-				<label class="date">Select Time</label>
-				<label class="input">
-				<i class="icon-append fa fa-calendar"></i>
-				<input name="Time" type="time" required="">
-				</label>
-				</section>
+				<div class="col-sm-6">
+				<label>Set Password <span class="color-red">*</span></label>
+				<input type="password" name="Password" class="form-control " style="margin-bottom: 20px;" required="">
 				</div>
+				</div>
+				
+				<hr>
 
-				</fieldset>
-
-				<footer>
-				<button type="submit" class="btn-u">Send message</button>
-				</footer>
-
-
+				<div class="row">
+				<div class="col-lg-6 checkbox">
+				<label>
+				<input type="checkbox" required="">
+				I read <a href="#" class="color-green">Terms and Conditions</a>
+				</label>
+				</div>
+				<div class="col-lg-6 text-right">
+				<button class="btn-u" type="submit">update</button>
+				</div>
+				</div>
 				</form>
-				</div><!--/col-md-9-->
-
-				<!-- side part of appointment -->
-						<div class="col-md-3" style="margin-top: 56px;">
-						<!-- Address -->
-						<div class="headline"><h2>Appointment Notes</h2></div>
-						<p> You Only Can Book Your Appointment Between <strong>8 AM to 10 PM.</strong> </p>
-						<p> In Other Times You Can Call Our Ambulance Which Is Available 24/7. </p>
-
-						<!-- Business Hours -->
-						<div class="headline" style="margin-top: 20px;"><h2>Business Hours</h2></div>
-						<ul class="list-unstyled " style="margin-bottom: 30px;">
-						<li><strong>Monday-Saturday:</strong> 24/7 Available.</li>
-						<li><strong>Sunday:</strong> 4 AM to 11 PM.</li>
-						</ul>
-
-						<!-- Why choose us? -->
-						<div class="headline"><h2>Why Choose Us?</h2></div>
-						<p>All healthcare facilities can be accessed here under one roof, making UNITY Hospital a one point contact for all your healthcare needs.</p>
-						<ul class="list-unstyled">
-						<li><i class="fa fa-check color-green"></i> 24/7 Ambulance Support.</li>
-						<li><i class="fa fa-check color-green"></i> Eminent and Experienced Doctors.</li>
-						<li><i class="fa fa-check color-green"></i> Multiple Options For Treatment.</li>
-						</ul>
-						</div><!--/col-md-3-->
-						</div><!--/row-->
-						</div><!--/container-->
-
+				</div>
+				</div>
+				</div><!--/container-->
+				<!--=== End Content Part ===-->
 
 		<!--=== Footer ===-->
 		<div class="footer-v1">

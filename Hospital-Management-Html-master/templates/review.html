@@ -24,7 +24,16 @@
 
 		<!-- CSS Customization -->
 		<link rel="stylesheet" href="static/assets/css/custom.css">
-
+		<script>
+			function f1()
+			 {
+			 var	obj=document.getElementById("t1")
+			 var	str= "welcome <u>" +obj.value + "</u>" ;
+			 var	obj2=document.getElementById("p1") ;
+			 obj2.innerHTML=str ;
+			 }
+		 
+			 </script>
 </head>
 
 <body>
@@ -132,14 +141,14 @@
 	<div class="headline"><h2>Review Form</h2></div>
 
 				<!--=== APPOINTMENT FORM ===-->
-				<form onsubmit="showMsg(0);return false;" method="post" class="sky-form sky-changes-3">
+				<form action="http://localhost:5000/review" method="post or get" class="sky-form sky-changes-3">
 				<fieldset>
-				
+				<div class="msg"  style="color:red;">{{ msg }}</div>
 				<section >
 				<label class="label">Name</label>
 				<label class="input">
 				<i class="icon-append fa fa-user"></i>
-				<input type="text" name="name" id="name" required="">
+				<input type="text" name="name" id="t1" required="">
 				</label>
 				</section>
 
@@ -162,15 +171,11 @@
 				</label>
 				</section> 	
 
-				<div class="alert alert-success successBox">
-				<button type="button" class="close" onclick="showMsg(1);">×</button>
-				<strong style="font-size: 16px;">Congratulations!</strong><span class="alert-link"> Your Appointment has been booked successfully.</span>
-				</div>
-
 				</fieldset>
 
 				<footer>
-				<button type="submit" class="btn-u">REVIEW</button>
+				<h1><button type="submit" class="btn-u" >Review</button>
+					</h1>
 				</footer>
 
 
@@ -183,7 +188,41 @@
 					</div><!--/col-md-3-->
 					</div><!--/row-->
 					</div><!--/container-->
+<!--=== Heading ===-->
 
+<div class="headline"  >
+<h1><div>Your Appointments</div>
+</h1>
+<table class="table">
+	<thead class="bg-success">
+	  <tr>
+		<th scope="col">D.name</th>
+		<th scope="col">Date</th>
+		<th scope="col">Time</th>
+	  </tr>
+	</thead>
+	<tbody>
+		{%for r in myresult %}
+		<tr>
+			<th scope="row">{{r[0]}}</th>
+			<td>{{r[1]}}</td>
+			<td>{{r[2]}}</td>
+			<td>{{r[3]}}</td>
+			<td>{{r[4]}}</td>
+			<td>{{r[5]}}</td>
+			<td>{{r[6]}}</td>
+		</tr>
+		{%endfor%}  
+	</tbody>
+  </table>
+			
+
+			<!-- side part of appointment -->
+					<div class="col-md-3" style="margin-top: 56px;">
+					
+					</div><!--/col-md-3-->
+					</div><!--/row-->
+					</div><!--/container-->
 
 		<!--=== Footer ===-->
 		<div class="footer-v1">
