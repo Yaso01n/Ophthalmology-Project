@@ -1,7 +1,9 @@
-#<!DOCTYPE html>
+<!DOCTYPE html>
 <html> 
 <head>
-	<title> Unity Hospital | Doctors </title>
+	<title> Ophthmaology </title>
+    <!-- add icon link -->
+    <link rel = "icon" href = "static/assets/img/logo/23.png"        type = "image/x-icon">
 
 
 		<!-- Web Fonts -->
@@ -63,7 +65,7 @@
 
 				<div class="navbar-brand">
 				<a href="http://127.0.0.1:5000">
-				<img src="static/assets/img/logo/unity_white.jpg" alt="Logo">
+				<img src="static/assets/img/logo/23.png" alt="Logo">
 				</a>
 				</div>
 				</div><!--/end responsive container-->
@@ -105,7 +107,7 @@
 	<h2>Register a new account</h2>
 	<p>Already Signed Up? Click <a href="http://127.0.0.1:5000/login" class="color-green">Sign In</a> to login your account.</p>
 	</div>
-
+    <div class="msg"  style="color:red;">{{ msg }}</div>	
 	<div class="row">
 	<div class="col-sm-6">
 	<label>First Name </label>
@@ -120,8 +122,7 @@
 	<input type="text" class="form-control " style="margin-bottom: 20px;" required="" name="Mobile Number">
 	<label>Email Address <span class="color-red">*</span></label>
 	<input type="email" class="form-control " style="margin-bottom: 20px;" required="" name="Email Address">
-	<label> Address </label>
-	<input type="text" class="form-control " style="margin-bottom: 20px;" required="">
+	
 
 	<div class="row">
 	<div class="col-sm-6">
@@ -129,10 +130,7 @@
 	<input type="password" class="form-control " style="margin-bottom: 20px;" required="" name="Password">
 	</div>
 	</div>
-	<div class="alert alert-success successBox">
-	<button type="button" class="close" onclick="showMsg(1);">×</button>
-	<strong style="font-size: 16px;">Congratulations!</strong><span class="alert-link"> You Have Successfully Registered.</span>
-	</div>
+	
 
 	<hr>
 
@@ -165,8 +163,8 @@
 		<div class="row">
 		<!-- About -->
 		<div class="col-md-3 " style="margin-bottom: 40px;">
-		<a href="http://127.0.0.1:5000"><img id="logo-footer" class="footer-logo" src="static/assets/img/logo/unity_white.jpg" alt=""></a>
-		<p>At Unity Hospital, we are convinced that 'quality' and 'lowest cost' are not mutually exclusive when it comes to healthcare delivery.</p>
+		<a href="http://127.0.0.1:5000"><img id="logo-footer" class="footer-logo" src="static/assets/img/logo/23.png" alt=""></a>
+		<p>At Ophthmaology, we are convinced that 'quality' and 'lowest cost' are not mutually exclusive when it comes to healthcare delivery.</p>
 		<p>Our mission is to deliver high quality, affordable healthcare services to the broader population in India.</p>
 		</div><!--/col-md-3-->
 		<!-- End About -->
@@ -207,7 +205,7 @@
 		<div class="col-md-3 map-img " style="margin-bottom: 40px;">
 		<div class="headline"><h2>Contact Us</h2></div>
 		<address class="" style="margin-bottom: 40px;">
-		Unity Hospital <br />
+		Ophthmaology <br />
 		Ahmedabad, IN <br />
 		Phone: 886 666 00555 <br />
 		Email: unityhospital@gmail.com 

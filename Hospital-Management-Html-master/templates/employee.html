@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html> 
 <head>
-<title> ophthmaology Hospital | Employee </title>
+	<title> Ophthmaology </title>
+    <!-- add icon link -->
+    <link rel = "icon" href = "static/assets/img/logo/23.png"        type = "image/x-icon">
 
 	<!-- Web Fonts -->
 	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin">
@@ -64,7 +66,7 @@
 
 	<div class="navbar-brand">
 	<a href="http://127.0.0.1:5000">
-	<img src="static/assets/img/logo/unity_white.jpg" alt="Logo">
+	<img src="static/assets/img/logo/23.png" alt="Logo">
 	</a>
 	</div>
 	</div><!--/end responsive container-->
@@ -121,6 +123,13 @@
 	</a>
 	</li>
 	<!-- update Device -->
+	<!-- List patient -->
+	<li class="mega-menu-fullwidth">
+	<a href="http://127.0.0.1:5000/contact1" >
+	Messages
+	</a>
+	</li>
+	<!-- List patient -->
 
 
 	</ul>
@@ -131,91 +140,87 @@
 	</div>
 	</div>
 	<!-- End Navbar -->
-	<div class="container emp-profile">
-		<form method="post">
-			<div class="row">
-				<div class="col-md-4">
-					<div class="profile-img">
-						<img src="static/assets/img/user.jpg" alt=""/>
-						<div class="file btn btn-lg btn-primary">
-							Change Photo
-							<input type="file" name="file"/>
-						</div>
-						<li class="mega-menu-fullwidth">
-						<a href="http://127.0.0.1:5000/setting" >
-						Edit File
-						</a>
-						
-						</li>
-					</div>
-					
-				</div>
-				<div class="col-md-6">
-					<div class="profile-head">
-								<h3>
-									HELLO
-								</h3>
-								<h6>
-									
-								</h6>
-						<ul class="nav nav-tabs" id="myTab" role="tablist">
-							<li class="nav-item">
-								<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
-							</li>
-							
-						</ul>
-					</div>
-				</div>
-				
-			</div>
-			<div class="row">
-				<div class="col-md-4">
-					<div class="profile-work">
-						
-					</div>
-				</div>
-				<div class="col-md-8">
-					<div class="tab-content profile-tab" id="myTabContent">
-						<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-									<div class="row">
-										<div class="col-md-6">
-											<label>User Id</label>
-										</div>
-										<div class="col-md-6">
-											<p></p>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-md-6">
-											<label>Name</label>
-										</div>
-										<div class="col-md-6">
-											<p></p>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-md-6">
-											<label>Email</label>
-										</div>
-										<div class="col-md-6">
-											<p></p>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-md-6">
-											<label>Phone</label>
-										</div>
-										<div class="col-md-6">
-											<p></p>
-										</div>
-									</div>
-									
-						</div>
-						
-					</div>
-				</div>
-			</div>
-		</form>           
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 mb-4 mb-sm-5">
+                <div class="card card-style1 border-0">
+                    <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7">
+                        <div class="row align-items-center">
+
+                            <div class="col-lg-6 px-xl-10">
+                                <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded " style="color:darkgreen">
+                                    <h3 class="h2 text-white mb-0" style="color:white"> {{checkemployee[2]}} {{checkemployee[3]}}</h3>
+                                    
+                                </div>
+                                <ul class="list-unstyled mb-1-9">
+                                    <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">User Id:</span> {{checkemployee[0]}}</li>
+                                    <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Email:</span> {{checkemployee[4]}}</li>
+                                    <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Password:</span> {{checkemployee[1]}}</li>
+
+                                    <li class="display-28"><span class="display-26 text-secondary me-2 font-weight-600">Phone:</span>{{checkemployee[5]}}</li>
+                                </ul>
+                                <ul class="social-icon-style1 list-unstyled mb-0 ps-0">
+                                    <li><a href="#!"><i class="ti-twitter-alt"></i></a></li>
+                                    <li><a href="#!"><i class="ti-facebook"></i></a></li>
+                                    <li><a href="#!"><i class="ti-pinterest"></i></a></li>
+                                    <li><a href="#!"><i class="ti-instagram"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 mb-4 mb-sm-5">
+
+            </div>
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-12 mb-4 mb-sm-5">
+                        <div class="mb-4 mb-sm-5">
+                            <span class="section-title text-primary mb-3 mb-sm-4">Skill</span>
+                            <div class="progress-text">
+                                <div class="row">
+                                    <div class="col-6">Leadership and management skills.</div>
+                                    <div class="col-6 text-end">80%</div>
+                                </div>
+                            </div>
+                            <div class="custom-progress progress progress-medium mb-3" style="height: 4px;">
+                                <div class="animated custom-bar progress-bar slideInLeft bg-secondary" style="width:80%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
+                            </div>
+                            <div class="progress-text">
+                                <div class="row">
+                                    <div class="col-6">Communication skills, compassion and a good bedside manner.</div>
+                                    <div class="col-6 text-end">90%</div>
+                                </div>
+                            </div>
+                            <div class="custom-progress progress progress-medium mb-3" style="height: 4px;">
+                                <div class="animated custom-bar progress-bar slideInLeft bg-secondary" style="width:90%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" role="progressbar"></div>
+                            </div>
+                            <div class="progress-text">
+                                <div class="row">
+                                    <div class="col-6">Problem-solving skills</div>
+                                    <div class="col-6 text-end">50%</div>
+                                </div>
+                            </div>
+                            <div class="custom-progress progress progress-medium mb-3" style="height: 4px;">
+                                <div class="animated custom-bar progress-bar slideInLeft bg-secondary" style="width:50%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" role="progressbar"></div>
+                            </div>
+                            <div class="progress-text">
+                                <div class="row">
+                                    <div class="col-6">Decision-making skills</div>
+                                    <div class="col-6 text-end">60%</div>
+                                </div>
+                            </div>
+                            <div class="custom-progress progress progress-medium" style="height: 4px;">
+                                <div class="animated custom-bar progress-bar slideInLeft bg-secondary" style="width:60%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" role="progressbar"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>	       
 	</div>
 
 

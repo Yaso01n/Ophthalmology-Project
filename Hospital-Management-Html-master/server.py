@@ -1,7 +1,9 @@
-from flask import Flask, redirect, url_for, request,render_template,flash
+from email import message
+from flask import Flask, redirect, url_for, request,render_template,flash,session
 import numpy as np
 import mysql.connector
 from sympy import Id
+
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
@@ -13,35 +15,36 @@ mydb = mysql.connector.connect(
 mycursor = mydb.cursor()
 app = Flask(__name__,template_folder="templates")
 
-
-
-
 @app.route('/')
 def hello_name():
    return render_template('index.html')
 
-   
-@app.route('/doctor',methods = ['POST', 'GET'])
-def registerdoctor():
+
+@app.route('/doctor', methods = ['POST', 'GET'])
+def doctorregistration():
+   msg=" "
    if request.method == 'POST': ##check if there is post data
       Fname = request.form['First Name']
       Lname = request.form['Last Name']
       phonenumber = request.form['Mobile Number']
       Email = request.form['Email Address']
       Password = request.form['Password']
-      print(Fname)
-      print(Lname)
-      print(phonenumber)
-      print(Email)
-      print(Password)
-      sql = "INSERT INTO Doctor (Password,Fname, Lname, Email, phonenumber) VALUES (%s, %s, %s, %s, %s)"
-      val = (Password,Fname, Lname, Email, phonenumber)
-      mycursor.execute(sql, val)
-      mydb.commit() 
-      return render_template('eachdoctor.html')
+      mycursor.execute("SELECT * FROM Doctor WHERE Email  = (%s)", (Email,))
+      checkdoctor = mycursor.fetchone()
+      if checkdoctor:
+         msg="the account already exsist"
+         return render_template('doctors.html',msg=msg)
+      else:
+         sql = "INSERT INTO Doctor (Password,Fname, Lname, Email, Phonenumber) VALUES (%s, %s, %s, %s, %s)"
+         val = (Password,Fname, Lname, Email, phonenumber)
+         mycursor.execute(sql, val)
+         mydb.commit() 
+         session['loggedin'] = True
+         mycursor.execute("SELECT * FROM Doctor WHERE Email = (%s) ", (Email,))
+         checkdoctor = mycursor.fetchone()
+         return render_template('eachdoctor.html',checkdoctor=checkdoctor)
    else:
       return render_template('doctors.html')
-
 
 @app.route('/about')
 def about():
@@ -77,6 +80,7 @@ def appointment():
       data={
          'rec':myresult,
       }
+      
       return render_template('appointment.html',data=data)
 
 
@@ -102,9 +106,22 @@ def cancel():
       return render_template('cancel.html')
 
 
-@app.route('/contact')
+@app.route('/contact',methods = ['POST', 'GET'])
 def contact():
-   return render_template('contact.html')
+   if request.method == 'POST':
+      email = request.form['email']
+      name=request.form['name']
+      subject=request.form['subject']
+      number=request.form['number']
+      message=request.form['message']
+      sql="insert into contact (name, Email, subject, message, number) VALUES (%s,%s,%s,%s,%s)"
+      val=(name,email,subject,message,number)
+      mycursor.execute(sql, val)
+      mydb.commit()
+      msg='your message is sent'
+      return render_template('contact.html',msg=msg)
+   else:   
+      return render_template('contact.html')
 
 
 @app.route('/dataofdoctor',methods = ['POST', 'GET'])
@@ -127,40 +144,54 @@ def dataofpatient():
    
 @app.route('/eachdoctor')
 def eachdoctor():
-   mycursor.execute("SELECT * FROM booking JOIN doctors ON d_id=id ")
-   row_headers=[x[0] for x in mycursor.description] 
-   myresult = mycursor.fetchall()
-   return render_template('eachdoctor.html',DoctorsData = myresult)
+    if 'loggedin' in session:
+        mycursor.execute('SELECT * FROM Employee WHERE id = % s', (session['id'], ))
+        checkdoctor = mycursor.fetchone()    
+    return render_template('eachdoctor.html',checkdoctor = checkdoctor)
 
 @app.route('/eachpatient')
 def eachpatient():
    mycursor.execute("SELECT * FROM booking JOIN patient ON p_email=Email")
-   row_headers =[x[0] for x in mycursor.description] 
    myresult = mycursor.fetchall()
    return render_template('eachpatient.html',patientsData = myresult)
 
+@app.route('/reviewpatient')
+def reviewpatient():
+    if 'loggedin' in session:
+        mycursor.execute('SELECT Fname,date,time FROM booking JOIN Doctor ON d_id=id WHERE p_email = % s', (session['Email'],))
+        checkpatient = mycursor.fetchall()    
+        return render_template("reviewpatient.html",checkpatient=checkpatient)
 
+   
 @app.route('/employee')
 def employee():
-      return render_template('employee.html')
+      if 'loggedin' in session:
+        mycursor.execute('SELECT * FROM Employee WHERE id = % s', (session['id'], ))
+        checkemployee = mycursor.fetchone()    
+        return render_template("employee.html", checkemployee = checkemployee)
 
 
 @app.route('/login', methods = ['POST', 'GET'])
 def login():
+   msg=""
    if request.method == 'POST': ##check if there is post data
       username = request.form['userid']
       Password = request.form['usrpsw']
-      print(username)
-      print(Password)
       mycursor.execute("SELECT * FROM Doctor WHERE id = (%s) AND Password = (%s)", (username, Password))
       checkdoctor = mycursor.fetchone()
+      mycursor.execute('SELECT * FROM booking WHERE d_id = (%s)', (username,))
+      result = mycursor.fetchone()  
       if checkdoctor:
-         return render_template('eachdoctor.html')
+         session['loggedin'] = True
+         return render_template('eachdoctor.html',checkdoctor=checkdoctor,result=result)
+         
       else:
          mycursor.execute("SELECT * FROM Employee WHERE id = (%s) AND Password = (%s)", (username, Password))
          checkemployee = mycursor.fetchone()
          if checkemployee:
-            return render_template('employee.html') 
+            session['loggedin'] = True
+            # session['Password'] = checkemployee['Password',]
+            return render_template('employee.html',checkemployee=checkemployee) 
          else:
             msg= 'wrong login'
             return render_template('login.html', msg= msg)
@@ -185,35 +216,54 @@ def registration():
       phonenumber = request.form['Mobile Number']
       Email = request.form['Email Address']
       Password = request.form['Password']
-
-      sql = "INSERT INTO Employee (Password,Fname, Lname, Email, Phonenumber) VALUES (%s, %s, %s, %s, %s)"
-      val = (Password,Fname, Lname, Email, phonenumber)
-      mycursor.execute(sql, val)
-      mydb.commit() 
-      return render_template('employee.html')
+      mycursor.execute("SELECT * FROM Employee WHERE Email  = (%s)", (Email,))
+      checkemployee = mycursor.fetchone()
+      if checkemployee:
+         msg="the account already exsist"
+         return render_template('registration.html',msg=msg)
+      else:
+         sql = "INSERT INTO Employee (Password,Fname, Lname, Email, Phonenumber) VALUES (%s, %s, %s, %s, %s)"
+         val = (Password,Fname, Lname, Email, phonenumber)
+         mycursor.execute(sql, val)
+         mydb.commit() 
+         session['loggedin'] = True
+         mycursor.execute("SELECT * FROM Employee WHERE Email = (%s) ", (Email,))
+         checkemployee = mycursor.fetchone()
+         return render_template('employee.html',checkemployee=checkemployee)
    else:
+      msg="You are already exsist"
       return render_template('registration.html')
-
-
-
 @app.route('/review', methods = ['POST', 'GET'])
 def review():
    if request.method == 'POST':
       name=request.form['name']
       email=request.form['email']
       number=request.form['number']
-      mycursor.execute("SELECT * FROM Patient WHERE Email = (%s) AND name = (%s)", (email, name))
+      mycursor.execute("SELECT * FROM Patient WHERE Email = (%s) ", (email,))
       checkpatient = mycursor.fetchone()
       if checkpatient:
-         mycursor.execute("SELECT * FROM booking JOIN patient ON p_email=Email where email=%s",(email))
-         row_headers =[x[0] for x in mycursor.description] 
-         myresult = mycursor.fetchall()
-         return render_template('review.html',myresult=myresult)
+         session['in'] = True
+         result=mycursor.execute("SELECT Doctor.Fname,booking.date,booking.time FROM Doctor INNER JOIN booking ON id=d_id WHERE p_email = (%s) ", (email,))
+         checkpatient = mycursor.fetchone()
+         return render_template('reviewpatient.html',checkpatient=checkpatient)
       else:
          msg='This patient not found'
          return render_template('review.html',msg=msg)
    else:
-      return render_template('review.html')
+         msg=" "
+         return render_template('review.html')
+
+
+@app.route('/setting')
+def setting():
+   return render_template('setting.html')
+
+@app.route('/contact1')
+def contact1():
+   result= mycursor.execute("SELECT subject,message FROM contact")  
+   myresult = mycursor.fetchall()
+   return render_template('contact1.html',myresult=myresult)
+
 
 @app.route('/terms')
 def terms():
@@ -229,12 +279,20 @@ def device():
       Supervisor = request.form['Supervisor']
       maintenance = request.form['ma']
       work = request.form['work']
-      sql = "INSERT INTO Devices (dcode , supervisor , company , m_state , w_state ) VALUES (%s, %s, %s, %s, %s)"
-      val = (code, Supervisor,company, maintenance,work)
-      mycursor.execute(sql, val)
-      mydb.commit() 
-      return render_template('employee.html')
+      mycursor.execute("SELECT * FROM Devices WHERE dcode = (%s)", (code,))
+      checkdevice = mycursor.fetchone()
+      if checkdevice:
+         msg="Device already exsist please check the list"
+         return render_template('device.html',msg=msg)
+      else:   
+         sql = "INSERT INTO Devices (dcode , supervisor , company , m_state , w_state , dname ) VALUES (%s, %s, %s, %s, %s, %s)"
+         val = (code, Supervisor,company, maintenance,work,name)
+         mycursor.execute(sql, val)
+         mydb.commit() 
+         msg="Your device is added"
+         return render_template('device.html',msg=msg)
     else:  
+     
      return render_template('device.html')
 
 
@@ -259,7 +317,8 @@ def update():
                   WHERE dcode=%s
                """, (work, maintenance, code))
          mydb.commit() 
-         return render_template('employee.html')
+         msg="Your device is updated"
+         return render_template('device.html',msg=msg)
         else:
            msg= 'Device does not exsist'
            return render_template('update.html', msg= msg)
@@ -268,14 +327,16 @@ def update():
 
 
 @app.route('/appointmentofdoctor')
-def doctorappointment():
-   return render_template('appointmentofdoctor.html')
+def appointmentofdotor():
+    if 'loggedin' in session:
+       mycursor.execute('SELECT Patient.name,Patient.Email,booking.date,booking.time FROM booking JOIN Patient ON p_email=Email WHERE d_id = % s', (session['id'],))
+       myresult = mycursor.fetchall()    
+       return render_template("appointmentofdoctor.html",myresult=myresult)
+    return render_template("appointmentofdoctor.html")
 
-@app.route('/setting')
-def setting():
-   return render_template('setting.html')   
 
 
 if __name__ == '__main__':
-   app.run()
+   app.secret_key = 'SECRET KEY FOR PROJECT'
+   app.run(debug=True)
    

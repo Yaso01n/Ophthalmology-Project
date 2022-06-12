@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html> 
 <head>
-	<title> Unity Hospital | Review </title>
+	<title> Ophthmaology </title>
+    <!-- add icon link -->
+    <link rel = "icon" href = "static/assets/img/logo/23.png"        type = "image/x-icon">
 
 
 		<!-- Web Fonts -->
@@ -74,7 +76,7 @@
 
 				<div class="navbar-brand">
 				<a href="http://127.0.0.1:5000">
-				<img src="static/assets/img/logo/unity_white.jpg" alt="Logo">
+				<img src="static/assets/img/logo/23.png" alt="Logo">
 				</a>
 				</div>
 				</div><!--/end responsive container-->
@@ -141,7 +143,7 @@
 	<div class="headline"><h2>Review Form</h2></div>
 
 				<!--=== APPOINTMENT FORM ===-->
-				<form action="http://localhost:5000/review" method="post or get" class="sky-form sky-changes-3">
+				<form action="http://localhost:5000/review" method="post" class="sky-form sky-changes-3">
 				<fieldset>
 				<div class="msg"  style="color:red;">{{ msg }}</div>
 				<section >
@@ -190,32 +192,6 @@
 					</div><!--/container-->
 <!--=== Heading ===-->
 
-<div class="headline"  >
-<h1><div>Your Appointments</div>
-</h1>
-<table class="table">
-	<thead class="bg-success">
-	  <tr>
-		<th scope="col">D.name</th>
-		<th scope="col">Date</th>
-		<th scope="col">Time</th>
-	  </tr>
-	</thead>
-	<tbody>
-		{%for r in myresult %}
-		<tr>
-			<th scope="row">{{r[0]}}</th>
-			<td>{{r[1]}}</td>
-			<td>{{r[2]}}</td>
-			<td>{{r[3]}}</td>
-			<td>{{r[4]}}</td>
-			<td>{{r[5]}}</td>
-			<td>{{r[6]}}</td>
-		</tr>
-		{%endfor%}  
-	</tbody>
-  </table>
-			
 
 			<!-- side part of appointment -->
 					<div class="col-md-3" style="margin-top: 56px;">
@@ -231,8 +207,8 @@
 		<div class="row">
 		<!-- About -->
 		<div class="col-md-3 " style="margin-bottom: 40px;">
-		<a href="http://127.0.0.1:5000"><img id="logo-footer" class="footer-logo" src="static/assets/img/logo/unity_white.jpg" alt=""></a>
-		<p>At Unity Hospital, we are convinced that 'quality' and 'lowest cost' are not mutually exclusive when it comes to healthcare delivery.</p>
+		<a href="http://127.0.0.1:5000"><img id="logo-footer" class="footer-logo" src="static/assets/img/logo/23.png" alt=""></a>
+		<p>At Ophthmaology, we are convinced that 'quality' and 'lowest cost' are not mutually exclusive when it comes to healthcare delivery.</p>
 		<p>Our mission is to deliver high quality, affordable healthcare services to the broader population in India.</p>
 		</div><!--/col-md-3-->
 		<!-- End About -->
@@ -273,7 +249,7 @@
 		<div class="col-md-3 map-img " style="margin-bottom: 40px;">
 		<div class="headline"><h2>Contact Us</h2></div>
 		<address class="" style="margin-bottom: 40px;">
-		Unity Hospital <br />
+		Ophthmaology <br />
 		Ahmedabad, IN <br />
 		Phone: 886 666 00555 <br />
 		Email: unityhospital@gmail.com 

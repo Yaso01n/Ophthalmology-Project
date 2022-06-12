@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html> 
 <head>
-	<title> Unity Hospital | device </title>
+	<title> Ophthmaology </title>
+    <!-- add icon link -->
+    <link rel = "icon" href = "static/assets/img/logo/23.png"        type = "image/x-icon">
 
 
 		<!-- Web Fonts -->
@@ -65,7 +67,7 @@
 
 				<div class="navbar-brand">
 				<a href="http://127.0.0.1:5000">
-				<img src="static/assets/img/logo/unity_white.jpg" alt="Logo">
+				<img src="static/assets/img/logo/23.png" alt="Logo">
 				</a>
 				</div>
 				</div><!--/end responsive container-->
@@ -79,7 +81,7 @@
 
 
 				<!-- Home  -->
-	<li class="mega-menu-fullwidth">
+	    <li class="mega-menu-fullwidth">
 		<a href="http://127.0.0.1:5000" >
 		HOME
 		</a>
@@ -122,6 +124,13 @@
 		</a>
 		</li>
 		<!-- update Device -->
+		<!-- List patient -->
+	    <li class="mega-menu-fullwidth">
+		<a href="http://127.0.0.1:5000/contact1" >
+		Messages
+		</a>
+		</li>
+		<!-- List patient -->
 	
 	
 		</ul>
@@ -144,6 +153,7 @@
 				<!--=== APPOINTMENT FORM ===-->
 				<form action="http://localhost:5000/device" method="post" class="sky-form sky-changes-3">
 				<fieldset>
+				<div class="msg"  style="color:red;">{{ msg }}</div>	
 				<div class="row">
 				<section class="col col-6">
 				<label class="label">Device'sname</label>
@@ -156,7 +166,7 @@
 				<label class="label">Device'scode</label>
 				<label class="input">
 				<i class="icon-append fa fa-envelope-o"></i>
-				<input type="text" name="email" id="email" required="">
+				<input type="text" name="code" id="code" required="">
 				</label>
 				</section>
 				</div>
@@ -164,7 +174,7 @@
 				<label class="label">Company</label>
 				<label class="input">
 				<i class="icon-append fa fa-phone"></i>
-				<input type="text" name="number" id="number" required="">
+				<input type="text" name="company" id="company" required="">
 				</label>
 				</section> 	
 		
@@ -172,7 +182,7 @@
 				<label class="label">supervisor</label>
 				<label class="input">
 				<i class="icon-append fa fa-tag"></i>
-				<input type="text" name="subject" required="">
+				<input type="text" name="Supervisor" required="">
 				</label>
 				</section>
 				
@@ -182,14 +192,14 @@
 				<label class="date">Maintenance State</label>
 				<label class="input">
 				<i class="icon-append fa fa-calendar"></i>
-				<input name="date" type="text" required="">
+				<input name="ma" type="text" required="">
 				</label>
 				</section>
 				<section class="col col-6">
 				<label class="date">Work State</label>
 				<label class="input">
 				<i class="icon-append fa fa-calendar"></i>
-				<input name="Time" type="text" required="">
+				<input name="work" type="text" required="">
 				</label>
 				</section>
 				</div>
@@ -220,8 +230,8 @@
 		<div class="row">
 		<!-- About -->
 		<div class="col-md-3 " style="margin-bottom: 40px;">
-		<a href="http://127.0.0.1:5000"><img id="logo-footer" class="footer-logo" src="static/assets/img/logo/unity_white.jpg" alt=""></a>
-		<p>At Unity Hospital, we are convinced that 'quality' and 'lowest cost' are not mutually exclusive when it comes to healthcare delivery.</p>
+		<a href="http://127.0.0.1:5000"><img id="logo-footer" class="footer-logo" src="static/assets/img/logo/23.png" alt=""></a>
+		<p>At Ophthmaology, we are convinced that 'quality' and 'lowest cost' are not mutually exclusive when it comes to healthcare delivery.</p>
 		<p>Our mission is to deliver high quality, affordable healthcare services to the broader population in India.</p>
 		</div><!--/col-md-3-->
 		<!-- End About -->
@@ -263,7 +273,7 @@
 		<div class="col-md-3 map-img " style="margin-bottom: 40px;">
 		<div class="headline"><h2>Contact Us</h2></div>
 		<address class="" style="margin-bottom: 40px;">
-		Unity Hospital <br />
+		Ophthmaology <br />
 		Ahmedabad, IN <br />
 		Phone: 886 666 00555 <br />
 		Email: unityhospital@gmail.com 
